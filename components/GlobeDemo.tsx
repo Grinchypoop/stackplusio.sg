@@ -8,7 +8,7 @@ const World = dynamic(() => import("./ui/globe").then((m) => m.World), {
 
 export function GlobeDemo() {
   return (
-    <div className="flex flex-row items-center justify-center h-screen bg-black relative w-full">
+    <div className="flex flex-row items-center justify-center h-full bg-black relative w-full">
       <div className="w-full h-full">
         <World />
       </div>

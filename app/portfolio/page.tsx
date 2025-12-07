@@ -40,16 +40,16 @@ export default function Portfolio() {
         </div>
       </div>
 
-      <div className="w-full bg-black pt-20 sm:pt-24">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-0 text-center px-4">
+      <div className="w-full bg-black pt-16 sm:pt-20 md:pt-24 pb-4 sm:pb-6">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 sm:mb-3 text-center px-4">
           Portfolio
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-white text-center mt-3 sm:mt-4 px-4">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white text-center mt-2 sm:mt-3 px-4">
           We build for startups all over the world
         </p>
 
         {/* See More Button */}
-        <div className="flex justify-center mt-6 sm:mt-8 px-4">
+        <div className="flex justify-center mt-4 sm:mt-6 md:mt-8 px-4">
           <button className="ui-btn" onClick={(e) => {
             e.preventDefault();
             window.location.href = '/portfolio/projects';
@@ -70,24 +70,27 @@ export default function Portfolio() {
 
           .ui-btn {
             --btn-default-bg: #000000;
-            --btn-padding: 12px 16px;
+            --btn-padding: 14px 20px;
             --btn-hover-bg: #000000;
             --btn-transition: .3s;
-            --btn-letter-spacing: .1rem;
+            --btn-letter-spacing: .05rem;
             --btn-animation-duration: 1.2s;
             --btn-shadow-color: rgba(0, 0, 0, 0.5);
             --btn-shadow: 0 4px 20px 0 var(--btn-shadow-color);
             --hover-btn-color: #FAC921;
             --default-btn-color: #fff;
-            --font-size: 14px;
+            --font-size: 15px;
             --font-weight: 600;
             --font-family: Menlo, Roboto Mono, monospace;
+            min-height: 44px;
+            min-width: 120px;
           }
 
           @media (min-width: 640px) {
             .ui-btn {
-              --btn-padding: 15px 20px;
+              --btn-padding: 16px 24px;
               --font-size: 16px;
+              --btn-letter-spacing: .1rem;
             }
           }
 
@@ -121,10 +124,16 @@ export default function Portfolio() {
           }
 
           .arrow-icon {
-            font-size: 20px;
+            font-size: 18px;
           }
 
           @media (min-width: 640px) {
+            .arrow-icon {
+              font-size: 22px;
+            }
+          }
+
+          @media (min-width: 768px) {
             .arrow-icon {
               font-size: 24px;
             }
@@ -175,7 +184,7 @@ export default function Portfolio() {
 
         `}</style>
 
-        <div className="h-screen relative">
+        <div className="h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-screen relative">
           <GlobeDemo />
         </div>
       </div>
