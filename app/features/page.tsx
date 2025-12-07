@@ -1,4 +1,5 @@
 import CTA from '@/components/CTA'
+import Footer from '@/components/Footer'
 
 export default function Features() {
   return (
@@ -288,6 +289,8 @@ export default function Features() {
         primaryButtonText="Schedule Demo"
         secondaryButtonText="Start Free Trial"
       />
+
+      <Footer />
     </>
   )
 }

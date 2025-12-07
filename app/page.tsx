@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -142,14 +144,20 @@ export default function Home() {
                 grid-template-rows: repeat(3, 1fr);
               }
               .gradient-text-splash {
-                font-size: 2rem;
+                font-size: 1.5rem;
+              }
+            }
+
+            @media (max-width: 480px) {
+              .gradient-text-splash {
+                font-size: 1.2rem;
               }
             }
           `}</style>
 
           <div className={`splash-text ${animateBreak ? 'fade-out' : ''}`}>
-            <h1 className="gradient-text-splash">
-              Get your full stack<br />developer for $599
+            <h1 className="gradient-text-splash" style={{ whiteSpace: 'nowrap' }}>
+              Get A Fullstack Developer<br />At 599
             </h1>
           </div>
 
@@ -172,22 +180,32 @@ export default function Home() {
 
       {/* Navigation */}
       <div className="fixed top-0 left-0 right-0 z-50">
-        <div className="max-w-7xl mx-auto px-8 py-8 flex items-center justify-end">
-          <nav className="flex items-center gap-8">
-            <a href="/discover" className="text-white hover:text-gray-300 transition text-base">Services</a>
-            <a href="/portfolio" className="text-white hover:text-gray-300 transition text-base">Portfolio</a>
-            <a href="/our-cause" className="text-white hover:text-gray-300 transition text-base">Our Cause</a>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-8 flex items-center justify-end">
+          <nav className="flex items-center gap-4 sm:gap-6 md:gap-8">
+            <a href="/discover" className="text-white hover:text-gray-300 transition text-sm sm:text-base">Services</a>
+            <a href="/portfolio" className="text-white hover:text-gray-300 transition text-sm sm:text-base">Portfolio</a>
+            <a href="/our-cause" className="text-white hover:text-gray-300 transition text-sm sm:text-base">Our Cause</a>
           </nav>
         </div>
       </div>
 
       {/* Main content */}
-      <div className="flex items-center justify-center h-full px-4">
+      <div className="flex items-center justify-center h-full px-4 sm:px-6 md:px-8">
         <div className="text-center max-w-5xl mx-auto">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
+          <div className="flex justify-center mb-8 sm:mb-10 md:mb-12">
+            <Image
+              src="/logo-black.png"
+              alt="StackPlus Logo"
+              width={600}
+              height={200}
+              className="h-32 sm:h-40 md:h-48 lg:h-64 w-auto"
+              priority
+            />
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2">
             Building teams that build the future
           </h1>
-          <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-light mb-12">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-300 font-light mb-8 sm:mb-10 md:mb-12 px-4">
             We connect startups with exceptional developers: on demand, fully integrated, and ready to ship from day one.
           </p>
           <Link href="/discover">
@@ -195,6 +213,8 @@ export default function Home() {
           </Link>
         </div>
       </div>
+
+      <Footer />
     </div>
   )
 }

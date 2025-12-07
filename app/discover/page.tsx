@@ -1,10 +1,21 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import Footer from '@/components/Footer'
 
 export default function Discover() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedService, setSelectedService] = useState('')
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    description: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+
   useEffect(() => {
     // Hide default header on this page
     const header = document.querySelector('header')
@@ -16,17 +27,84 @@ export default function Discover() {
     }
   }, [])
 
+  const openModal = (service: string) => {
+    setSelectedService(service)
+    setIsModalOpen(true)
+    setFormData({ name: '', email: '', description: '' })
+    setSubmitMessage('')
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedService('')
+    setFormData({ name: '', email: '', description: '' })
+    setSubmitMessage('')
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    try {
+      // Send data to API
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: selectedService,
+          description: formData.description,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSubmitMessage(data.message || 'Inquiry sent successfully! We will get back to you soon.')
+
+        // Close modal after 3 seconds
+        setTimeout(() => {
+          closeModal()
+        }, 3000)
+      } else {
+        setSubmitMessage(data.error || 'Failed to send inquiry. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitMessage('An error occurred. Please try again later.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#ffffff' }}>
       <style jsx>{`
         .pricing-card {
-          width: 350px;
+          width: 100%;
+          max-width: 350px;
           background: white;
           border-radius: 18px;
-          padding: 40px 30px;
+          padding: 30px 20px;
           text-align: center;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        @media (min-width: 640px) {
+          .pricing-card {
+            padding: 40px 30px;
+          }
         }
 
         .pricing-card:hover {
@@ -35,10 +113,11 @@ export default function Discover() {
         }
 
         .pricing-card-popular {
-          width: 350px;
+          width: 100%;
+          max-width: 350px;
           background: white;
           border-radius: 18px;
-          padding: 40px 30px;
+          padding: 30px 20px;
           text-align: center;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -47,6 +126,12 @@ export default function Discover() {
           background-origin: border-box;
           background-clip: padding-box, border-box;
           position: relative;
+        }
+
+        @media (min-width: 640px) {
+          .pricing-card-popular {
+            padding: 40px 30px;
+          }
         }
 
         .pricing-card-popular:hover {
@@ -85,30 +170,55 @@ export default function Discover() {
         }
 
         .tier-name {
-          font-size: 40px;
+          font-size: 32px;
           font-weight: 700;
           color: #000;
           margin-bottom: 15px;
         }
 
+        @media (min-width: 640px) {
+          .tier-name {
+            font-size: 40px;
+          }
+        }
+
         .tier-description {
-          font-size: 18px;
+          font-size: 16px;
           color: #666;
           line-height: 1.6;
           margin-bottom: 20px;
-          min-height: 100px;
+          min-height: 80px;
+        }
+
+        @media (min-width: 640px) {
+          .tier-description {
+            font-size: 18px;
+            min-height: 100px;
+          }
         }
 
         .tier-price {
-          font-size: 32px;
+          font-size: 28px;
           font-weight: 600;
           color: #000;
           margin-bottom: 30px;
         }
 
+        @media (min-width: 640px) {
+          .tier-price {
+            font-size: 32px;
+          }
+        }
+
         .tier-price span {
-          font-size: 16px;
+          font-size: 14px;
           color: #666;
+        }
+
+        @media (min-width: 640px) {
+          .tier-price span {
+            font-size: 16px;
+          }
         }
 
         .btn-learn-more {
@@ -177,20 +287,20 @@ export default function Discover() {
         }
       `}</style>
 
-      {/* Custom Navigation without logo */}
+      {/* Custom Navigation */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-8 py-4">
-          <nav className="flex items-center justify-end gap-8">
-            <Link href="/" className="text-gray-700 hover:text-primary-600 transition">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-3 md:py-4">
+          <nav className="flex items-center justify-end gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+            <Link href="/" className="text-gray-700 hover:text-primary-600 transition text-xs sm:text-sm md:text-base">
               About Us
             </Link>
-            <Link href="/discover" className="text-gray-700 hover:text-primary-600 transition">
+            <Link href="/discover" className="text-gray-700 hover:text-primary-600 transition text-xs sm:text-sm md:text-base">
               Services
             </Link>
-            <Link href="/portfolio" className="text-gray-700 hover:text-primary-600 transition">
+            <Link href="/portfolio" className="text-gray-700 hover:text-primary-600 transition text-xs sm:text-sm md:text-base">
               Portfolio
             </Link>
-            <Link href="/our-cause" className="text-gray-700 hover:text-primary-600 transition">
+            <Link href="/our-cause" className="text-gray-700 hover:text-primary-600 transition hidden sm:inline text-xs sm:text-sm md:text-base">
               Our Cause
             </Link>
           </nav>
@@ -198,26 +308,26 @@ export default function Discover() {
       </div>
 
       {/* Content */}
-      <div className="pt-32 pb-20">
-        <h1 className="text-5xl md:text-6xl font-bold text-black text-center mb-16 px-4">
+      <div className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-8 sm:mb-12 md:mb-16 px-4">
           Our Services
         </h1>
 
         {/* Full width black container with cards */}
-        <div className="w-full bg-black py-20">
+        <div className="w-full bg-black py-12 sm:py-16 md:py-20">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-5xl md:text-6xl font-bold text-white text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-6 sm:mb-8">
               Lease Developers
             </h2>
 
             {/* Free Trial text */}
-            <div className="text-center mb-16">
-              <p className="text-xl md:text-2xl text-white">
+            <div className="text-center mb-10 sm:mb-12 md:mb-16 px-4">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white">
                 Get <span className="gradient-text">One Week</span> Free Trial With A Stacker
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
             {/* Card 1 - Tier 1 */}
             <div className="pricing-card">
               <div className="tier-badge">Junior Developer</div>
@@ -229,7 +339,7 @@ export default function Discover() {
                 $599 <span>per month</span>
               </div>
               <div>
-                <button className="btn-learn-more">Select</button>
+                <button className="btn-learn-more" onClick={() => openModal('Tier 1 - Junior Developer ($599/month)')}>Select</button>
               </div>
             </div>
 
@@ -245,7 +355,7 @@ export default function Discover() {
                 $799 <span>per month</span>
               </div>
               <div>
-                <button className="btn-learn-more">Select</button>
+                <button className="btn-learn-more" onClick={() => openModal('Tier 2 - Senior Developer ($799/month)')}>Select</button>
               </div>
             </div>
 
@@ -260,7 +370,7 @@ export default function Discover() {
                 $1500 <span>per month</span>
               </div>
               <div>
-                <button className="btn-learn-more">Select</button>
+                <button className="btn-learn-more" onClick={() => openModal('Tier 3 - Enterprise ($1500/month)')}>Select</button>
               </div>
             </div>
 
@@ -273,15 +383,15 @@ export default function Discover() {
         </div>
 
         {/* Project Management Section */}
-        <section className="py-20 px-4">
+        <section className="py-12 sm:py-16 md:py-20 px-4">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-bold text-black text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-10 sm:mb-12 md:mb-16">
               Project Management
             </h2>
 
-            <div className="flex flex-col md:flex-row items-center gap-12 fade-in-left">
+            <div className="flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12 fade-in-left">
               {/* Image on the left */}
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <Image
                   src="/project-management.png"
                   alt="Project Management"
@@ -292,52 +402,68 @@ export default function Discover() {
               </div>
 
               {/* Description on the right */}
-              <div className="flex-1">
-                <h3 className="text-3xl font-bold text-black mb-6">
-                  You choose, We build
+              <div className="flex-1 w-full">
+                <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4 sm:mb-6">
+                  You Dream, <span className="gradient-text">We Build</span>
                 </h3>
-                <ul className="space-y-4 mb-8">
-                  <li className="text-lg text-gray-700 flex items-center">
-                    <span className="mr-3 text-2xl">✓</span>
+                <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <li className="text-base sm:text-lg text-gray-700 flex items-center">
+                    <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Planning & Setup
                   </li>
-                  <li className="text-lg text-gray-700 flex items-center">
-                    <span className="mr-3 text-2xl">✓</span>
+                  <li className="text-base sm:text-lg text-gray-700 flex items-center">
+                    <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Execution
                   </li>
-                  <li className="text-lg text-gray-700 flex items-center">
-                    <span className="mr-3 text-2xl">✓</span>
+                  <li className="text-base sm:text-lg text-gray-700 flex items-center">
+                    <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Review & Feedback
                   </li>
-                  <li className="text-lg text-gray-700 flex items-center">
-                    <span className="mr-3 text-2xl">✓</span>
+                  <li className="text-base sm:text-lg text-gray-700 flex items-center">
+                    <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Delivery & Closeout
                   </li>
                 </ul>
-                <button className="btn-learn-more">Get a Quote</button>
+                <button className="btn-learn-more" onClick={() => openModal('Project Management')}>Get a Quote</button>
               </div>
             </div>
           </div>
         </section>
 
         {/* Pixel To Production Section */}
-        <section className="py-20 px-4 bg-black">
+        <section className="py-12 sm:py-16 md:py-20 px-4 bg-black">
           <style>{`
             .loader-wrapper {
               position: relative;
               display: flex;
               align-items: center;
               justify-content: center;
-              width: 300px;
-              height: 300px;
+              width: 200px;
+              height: 200px;
               font-family: "Inter", sans-serif;
-              font-size: 1.5em;
+              font-size: 1em;
               font-weight: 300;
               color: white;
               border-radius: 50%;
               background-color: transparent;
               user-select: none;
               margin: 0 auto;
+            }
+
+            @media (min-width: 640px) {
+              .loader-wrapper {
+                width: 250px;
+                height: 250px;
+                font-size: 1.2em;
+              }
+            }
+
+            @media (min-width: 768px) {
+              .loader-wrapper {
+                width: 300px;
+                height: 300px;
+                font-size: 1.5em;
+              }
             }
 
             .loader {
@@ -472,9 +598,9 @@ export default function Discover() {
             }
           `}</style>
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row-reverse items-center gap-12 fade-in-left">
+            <div className="flex flex-col md:flex-row-reverse items-center gap-8 sm:gap-10 md:gap-12 fade-in-left">
               {/* Animated Loader on the right */}
-              <div className="flex-1 flex items-center justify-center">
+              <div className="flex-1 flex items-center justify-center w-full">
                 <div className="loader-wrapper">
                   <div className="loader"></div>
                   <span className="loader-letter">G</span>
@@ -491,45 +617,151 @@ export default function Discover() {
               </div>
 
               {/* Description on the left */}
-              <div className="flex-1">
-                <h3 className="text-3xl font-bold text-white mb-4">
+              <div className="flex-1 w-full">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4">
                   Pixel To Production
                 </h3>
-                <p className="text-xl text-gray-300 mb-6">
-                  Transform your Figma and Lovable designs into fully functional Full Stack Applications
+                <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-4 sm:mb-6">
+                  Transform your Figma and Lovable designs into <span className="gradient-text">fully functional</span> Full Stack Applications
                 </p>
-                <ul className="space-y-4 mb-8">
-                  <li className="text-lg text-gray-200 flex items-center">
-                    <span className="mr-3 text-2xl">✓</span>
+                <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <li className="text-base sm:text-lg text-gray-200 flex items-center">
+                    <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Figma to Code Conversion
                   </li>
-                  <li className="text-lg text-gray-200 flex items-center">
-                    <span className="mr-3 text-2xl">✓</span>
+                  <li className="text-base sm:text-lg text-gray-200 flex items-center">
+                    <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Lovable Design Integration
                   </li>
-                  <li className="text-lg text-gray-200 flex items-center">
-                    <span className="mr-3 text-2xl">✓</span>
+                  <li className="text-base sm:text-lg text-gray-200 flex items-center">
+                    <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Full Stack Development
                   </li>
-                  <li className="text-lg text-gray-200 flex items-center">
-                    <span className="mr-3 text-2xl">✓</span>
+                  <li className="text-base sm:text-lg text-gray-200 flex items-center">
+                    <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Responsive & Production-Ready
                   </li>
                 </ul>
-                <div className="mb-6">
-                  <div className="text-4xl font-bold text-white mb-2">
+                <div className="mb-4 sm:mb-6">
+                  <div className="text-3xl sm:text-4xl font-bold text-white mb-2">
                     $1,000
                   </div>
-                  <div className="text-lg text-gray-300">
+                  <div className="text-base sm:text-lg text-gray-300">
                     Shipped in 2 weeks
                   </div>
                 </div>
-                <button className="btn-pixel-to-prod">Get Started</button>
+                <button className="btn-pixel-to-prod" onClick={() => openModal('Pixel To Production ($1,000)')}>Get Started</button>
               </div>
             </div>
           </div>
         </section>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={closeModal}>
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-600 transition w-10 h-10 flex items-center justify-center"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 pr-8">Service Inquiry</h2>
+
+            {submitMessage ? (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <p className="text-gray-700">{submitMessage}</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                <div className="space-y-4">
+                  {/* Name */}
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition text-base"
+                      placeholder="Your name"
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Work Email *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition text-base"
+                      placeholder="your.email@company.com"
+                    />
+                  </div>
+
+                  {/* Service (Auto-selected) */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Service *
+                    </label>
+                    <div className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-700 text-sm sm:text-base">
+                      {selectedService}
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div>
+                    <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
+                      Description *
+                    </label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      required
+                      value={formData.description}
+                      onChange={handleInputChange}
+                      rows={4}
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition resize-none text-base"
+                      placeholder="Tell us about your requirements..."
+                    />
+                  </div>
+
+                  {/* Submit button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-pink-600 transition disabled:opacity-50 disabled:cursor-not-allowed text-base min-h-[44px]"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send'}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+
+      <Footer />
     </div>
   )
 }

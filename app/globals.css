@@ -30,15 +30,28 @@ body {
 }
 
 .btn {
-  width: 160px;
-  height: 40px;
-  font-size: 1.1em;
+  width: 140px;
+  min-height: 44px;
+  height: 44px;
+  font-size: 0.95em;
   cursor: pointer;
   background-color: #ffffff;
   color: #000000;
   border: none;
   border-radius: 5px;
   transition: all .4s;
+  padding: 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .btn {
+    width: 160px;
+    height: 40px;
+    font-size: 1.1em;
+  }
 }
 
 .btn:hover {
@@ -49,10 +62,25 @@ body {
    0 16px 10px -3px #39a2db;
 }
 
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
 .btn:active {
   transition: all 0.2s;
   transform: translateY(-5px);
   box-shadow: 0 2px 0 -2px #f85959,
    0 8px 0 -4px #39a2db,
    0 12px 10px -3px #39a2db;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .btn:active {
+    transform: scale(0.95);
+    box-shadow: none;
+  }
 }

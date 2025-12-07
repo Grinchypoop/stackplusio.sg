@@ -1,15 +1,40 @@
+'use client'
+
+import { useEffect } from 'react'
+import Image from 'next/image'
 import CTA from '@/components/CTA'
 
 export default function About() {
+  useEffect(() => {
+    // Hide default header on this page
+    const header = document.querySelector('header')
+    if (header) header.style.display = 'none'
+
+    // Cleanup - show header again when leaving the page
+    return () => {
+      if (header) header.style.display = ''
+    }
+  }, [])
+
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-white py-20">
+      <section className="bg-gradient-to-br from-primary-50 to-white py-12 sm:py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Transforming HR for the Modern Workplace
+          <div className="flex justify-center mb-6 sm:mb-8">
+            <Image
+              src="/logo-black.png"
+              alt="StackPlus Logo"
+              width={300}
+              height={100}
+              className="h-16 sm:h-20 md:h-24 w-auto"
+              priority
+            />
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
+            Building teams that build the future
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             We're on a mission to empower companies to build better workplaces through
             innovative HR technology.
           </p>
@@ -17,14 +42,14 @@ export default function About() {
       </section>
 
       {/* Our Story */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
                 Our Story
               </h2>
-              <div className="space-y-4 text-gray-600 text-lg">
+              <div className="space-y-3 sm:space-y-4 text-gray-600 text-base sm:text-lg">
                 <p>
                   Founded in 2020, StackPlus was born from a simple observation: HR teams
                   were drowning in spreadsheets and disconnected tools, while employees
@@ -43,8 +68,8 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-primary-100 to-primary-50 p-8 rounded-2xl h-96 flex items-center justify-center">
-              <div className="text-center text-primary-600 font-semibold">
+            <div className="bg-gradient-to-br from-primary-100 to-primary-50 p-6 sm:p-8 rounded-2xl h-64 sm:h-80 md:h-96 flex items-center justify-center">
+              <div className="text-center text-primary-600 font-semibold text-sm sm:text-base">
                 [Company Timeline Graphic]
               </div>
             </div>
@@ -53,32 +78,32 @@ export default function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-sm">
-              <div className="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-              <p className="text-gray-600 text-lg">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Our Mission</h3>
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg">
                 To empower companies of all sizes to build exceptional workplaces by providing
                 innovative, user-friendly HR technology that puts people first. We believe that
                 when HR teams have the right tools, they can create cultures where employees thrive.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-sm">
-              <div className="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-              <p className="text-gray-600 text-lg">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Our Vision</h3>
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg">
                 To become the world's most trusted HR platform, transforming how companies attract,
                 develop, and retain talent. We envision a future where every employee has an exceptional
                 workplace experience, powered by intelligent, seamless technology.
@@ -89,91 +114,91 @@ export default function About() {
       </section>
 
       {/* Our Values */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
               Our Values
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 px-4">
               The principles that guide everything we do
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">People First</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">People First</h3>
+              <p className="text-gray-600 text-sm sm:text-base">
                 We put people at the center of everything—our customers, their employees, and our team.
                 Technology should serve people, not the other way around.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Trust & Transparency</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Trust & Transparency</h3>
+              <p className="text-gray-600 text-sm sm:text-base">
                 We build trust through honest communication, transparent practices, and
                 delivering on our promises every single day.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Innovation</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Innovation</h3>
+              <p className="text-gray-600 text-sm sm:text-base">
                 We continuously push boundaries and embrace new ideas to create solutions
                 that transform how HR works.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Simplicity</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Simplicity</h3>
+              <p className="text-gray-600 text-sm sm:text-base">
                 We believe powerful software doesn't have to be complicated. We design
                 intuitive experiences that anyone can use.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Excellence</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Excellence</h3>
+              <p className="text-gray-600 text-sm sm:text-base">
                 We hold ourselves to the highest standards in everything we do, from product
                 quality to customer support.
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Global Impact</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Global Impact</h3>
+              <p className="text-gray-600 text-sm sm:text-base">
                 We're building a global platform that helps companies worldwide create
                 better workplaces and opportunities for all.
               </p>
@@ -183,27 +208,27 @@ export default function About() {
       </section>
 
       {/* Leadership Team */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
               Leadership Team
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 px-4">
               Meet the people leading StackPlus forward
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Team Member 1 */}
             <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
-              <div className="w-full h-64 bg-gradient-to-br from-primary-200 to-primary-100 flex items-center justify-center">
-                <div className="w-32 h-32 bg-primary-600 rounded-full"></div>
+              <div className="w-full h-48 sm:h-56 md:h-64 bg-gradient-to-br from-primary-200 to-primary-100 flex items-center justify-center">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-primary-600 rounded-full"></div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">Sarah Mitchell</h3>
-                <p className="text-primary-600 font-semibold mb-3">CEO & Co-Founder</p>
-                <p className="text-gray-600 mb-4">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">Sarah Mitchell</h3>
+                <p className="text-primary-600 font-semibold mb-2 sm:mb-3 text-sm sm:text-base">CEO & Co-Founder</p>
+                <p className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">
                   Former VP of HR Technology at Fortune 500. 15+ years building scalable HR solutions.
                 </p>
                 <div className="flex gap-3">
@@ -223,13 +248,13 @@ export default function About() {
 
             {/* Team Member 2 */}
             <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
-              <div className="w-full h-64 bg-gradient-to-br from-primary-200 to-primary-100 flex items-center justify-center">
-                <div className="w-32 h-32 bg-primary-600 rounded-full"></div>
+              <div className="w-full h-48 sm:h-56 md:h-64 bg-gradient-to-br from-primary-200 to-primary-100 flex items-center justify-center">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-primary-600 rounded-full"></div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">David Chen</h3>
-                <p className="text-primary-600 font-semibold mb-3">CTO & Co-Founder</p>
-                <p className="text-gray-600 mb-4">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">David Chen</h3>
+                <p className="text-primary-600 font-semibold mb-2 sm:mb-3 text-sm sm:text-base">CTO & Co-Founder</p>
+                <p className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">
                   Ex-Tech Lead at leading SAAS companies. Passionate about building scalable systems.
                 </p>
                 <div className="flex gap-3">
@@ -249,13 +274,13 @@ export default function About() {
 
             {/* Team Member 3 */}
             <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
-              <div className="w-full h-64 bg-gradient-to-br from-primary-200 to-primary-100 flex items-center justify-center">
-                <div className="w-32 h-32 bg-primary-600 rounded-full"></div>
+              <div className="w-full h-48 sm:h-56 md:h-64 bg-gradient-to-br from-primary-200 to-primary-100 flex items-center justify-center">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-primary-600 rounded-full"></div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">Maria Rodriguez</h3>
-                <p className="text-primary-600 font-semibold mb-3">VP of Product</p>
-                <p className="text-gray-600 mb-4">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">Maria Rodriguez</h3>
+                <p className="text-primary-600 font-semibold mb-2 sm:mb-3 text-sm sm:text-base">VP of Product</p>
+                <p className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">
                   Product leader with 12 years designing user-centric HR experiences at scale.
                 </p>
                 <div className="flex gap-3">

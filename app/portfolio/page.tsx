@@ -2,7 +2,9 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { GlobeDemo } from '@/components/GlobeDemo'
+import Footer from '@/components/Footer'
 
 export default function Portfolio() {
   useEffect(() => {
@@ -20,34 +22,34 @@ export default function Portfolio() {
     <div className="min-h-screen bg-black" style={{ backgroundColor: '#000000' }}>
       {/* Custom black header */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-black">
-        <div className="max-w-7xl mx-auto px-8 py-4">
-          <nav className="flex items-center justify-end gap-8">
-            <Link href="/" className="text-white hover:text-gray-300 transition">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-3 md:py-4">
+          <nav className="flex items-center justify-end gap-4 sm:gap-6 md:gap-8">
+            <Link href="/" className="text-white hover:text-gray-300 transition text-xs sm:text-sm md:text-base">
               About Us
             </Link>
-            <Link href="/discover" className="text-white hover:text-gray-300 transition">
+            <Link href="/discover" className="text-white hover:text-gray-300 transition text-xs sm:text-sm md:text-base">
               Services
             </Link>
-            <Link href="/portfolio" className="text-white hover:text-gray-300 transition">
+            <Link href="/portfolio" className="text-white hover:text-gray-300 transition text-xs sm:text-sm md:text-base">
               Portfolio
             </Link>
-            <Link href="/our-cause" className="text-white hover:text-gray-300 transition">
+            <Link href="/our-cause" className="text-white hover:text-gray-300 transition hidden sm:inline text-xs sm:text-sm md:text-base">
               Our Cause
             </Link>
           </nav>
         </div>
       </div>
 
-      <div className="w-full bg-black pt-24">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-0 text-center">
+      <div className="w-full bg-black pt-20 sm:pt-24">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-0 text-center px-4">
           Portfolio
         </h1>
-        <p className="text-xl text-white text-center mt-4">
+        <p className="text-base sm:text-lg md:text-xl text-white text-center mt-3 sm:mt-4 px-4">
           We build for startups all over the world
         </p>
 
         {/* See More Button */}
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-6 sm:mt-8 px-4">
           <button className="ui-btn" onClick={(e) => {
             e.preventDefault();
             window.location.href = '/portfolio/projects';
@@ -68,7 +70,7 @@ export default function Portfolio() {
 
           .ui-btn {
             --btn-default-bg: #000000;
-            --btn-padding: 15px 20px;
+            --btn-padding: 12px 16px;
             --btn-hover-bg: #000000;
             --btn-transition: .3s;
             --btn-letter-spacing: .1rem;
@@ -77,9 +79,16 @@ export default function Portfolio() {
             --btn-shadow: 0 4px 20px 0 var(--btn-shadow-color);
             --hover-btn-color: #FAC921;
             --default-btn-color: #fff;
-            --font-size: 16px;
+            --font-size: 14px;
             --font-weight: 600;
             --font-family: Menlo, Roboto Mono, monospace;
+          }
+
+          @media (min-width: 640px) {
+            .ui-btn {
+              --btn-padding: 15px 20px;
+              --font-size: 16px;
+            }
           }
 
           .ui-btn {
@@ -112,7 +121,13 @@ export default function Portfolio() {
           }
 
           .arrow-icon {
-            font-size: 24px;
+            font-size: 20px;
+          }
+
+          @media (min-width: 640px) {
+            .arrow-icon {
+              font-size: 24px;
+            }
           }
 
           .ui-btn span::before {
@@ -165,6 +180,7 @@ export default function Portfolio() {
         </div>
       </div>
 
+      <Footer />
     </div>
   )
 }

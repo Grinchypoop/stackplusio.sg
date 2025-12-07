@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import CTA from '@/components/CTA'
+import Footer from '@/components/Footer'
 
 export default function Pricing() {
   return (
@@ -310,6 +311,8 @@ export default function Pricing() {
         primaryButtonText="Contact Sales"
         secondaryButtonText="View Demo"
       />
+
+      <Footer />
     </>
   )
 }
