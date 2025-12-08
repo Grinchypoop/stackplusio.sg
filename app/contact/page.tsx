@@ -323,7 +323,7 @@ export default function Contact() {
               <button className="bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-700 transition text-lg">
                 Start Free Trial
               </button>
-              <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition border-2 border-primary-600 text-lg">
+              <button className="bg-[#f8f9fa] text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition border-2 border-primary-600 text-lg">
                 Schedule Demo
               </button>
             </div>

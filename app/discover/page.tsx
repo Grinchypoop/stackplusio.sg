@@ -21,9 +21,16 @@ export default function Discover() {
     const header = document.querySelector('header')
     if (header) header.style.display = 'none'
 
+    // Load Lottie script
+    const script = document.createElement('script')
+    script.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js'
+    script.type = 'module'
+    document.body.appendChild(script)
+
     // Cleanup - show header again when leaving the page
     return () => {
       if (header) header.style.display = ''
+      document.body.removeChild(script)
     }
   }, [])
 
@@ -88,12 +95,12 @@ export default function Discover() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#ffffff' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#000000' }}>
       <style jsx>{`
         .pricing-card {
           width: 100%;
           max-width: 350px;
-          background: white;
+          background: #e5e7eb;
           border-radius: 18px;
           padding: 30px 20px;
           text-align: center;
@@ -115,14 +122,14 @@ export default function Discover() {
         .pricing-card-popular {
           width: 100%;
           max-width: 350px;
-          background: white;
+          background: #e5e7eb;
           border-radius: 18px;
           padding: 30px 20px;
           text-align: center;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           border: 3px solid transparent;
-          background-image: linear-gradient(white, white), linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
+          background-image: linear-gradient(#e5e7eb, #e5e7eb), linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
           background-origin: border-box;
           background-clip: padding-box, border-box;
           position: relative;
@@ -227,12 +234,15 @@ export default function Discover() {
           border-radius: 30em;
           font-size: 15px;
           font-family: inherit;
-          border: none;
+          border: 2px solid #000000;
+          background: #ffffff;
+          color: #000000;
           position: relative;
           overflow: hidden;
           z-index: 1;
-          box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+          box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
           cursor: pointer;
+          transition: color 0.5s ease;
         }
 
         .btn-learn-more::before {
@@ -247,6 +257,10 @@ export default function Discover() {
           transition: .5s ease;
           display: block;
           z-index: -1;
+        }
+
+        .btn-learn-more:hover {
+          color: #e5e5e5;
         }
 
         .btn-learn-more:hover::before {
@@ -288,19 +302,19 @@ export default function Discover() {
       `}</style>
 
       {/* Custom Navigation */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-3 md:py-4">
+      <div className="fixed top-0 left-0 right-0 z-50 shadow-sm" style={{ backgroundColor: '#000000' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-2 md:py-3">
           <nav className="flex items-center justify-end gap-3 sm:gap-4 md:gap-6 lg:gap-8">
-            <Link href="/" className="text-gray-700 hover:text-primary-600 transition text-xs sm:text-sm md:text-base">
+            <Link href="/" className="text-gray-300 hover:text-gray-100 transition text-xs sm:text-sm md:text-base">
               About Us
             </Link>
-            <Link href="/discover" className="text-gray-700 hover:text-primary-600 transition text-xs sm:text-sm md:text-base">
+            <Link href="/discover" className="text-gray-300 hover:text-gray-100 transition text-xs sm:text-sm md:text-base">
               Services
             </Link>
-            <Link href="/portfolio" className="text-gray-700 hover:text-primary-600 transition text-xs sm:text-sm md:text-base">
+            <Link href="/portfolio" className="text-gray-300 hover:text-gray-100 transition text-xs sm:text-sm md:text-base">
               Portfolio
             </Link>
-            <Link href="/our-cause" className="text-gray-700 hover:text-primary-600 transition hidden sm:inline text-xs sm:text-sm md:text-base">
+            <Link href="/our-cause" className="text-gray-300 hover:text-gray-100 transition hidden sm:inline text-xs sm:text-sm md:text-base">
               Our Cause
             </Link>
           </nav>
@@ -308,21 +322,17 @@ export default function Discover() {
       </div>
 
       {/* Content */}
-      <div className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-8 sm:mb-12 md:mb-16 px-4">
-          Our Services
-        </h1>
-
+      <div className="pt-16 sm:pt-18 md:pt-20 pb-12 sm:pb-16 md:pb-20">
         {/* Full width black container with cards */}
-        <div className="w-full bg-black py-12 sm:py-16 md:py-20">
+        <div className="w-full py-12 sm:py-16 md:py-20" style={{ backgroundColor: '#000000' }}>
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-6 sm:mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-100 text-center mb-6 sm:mb-8">
               Lease Developers
             </h2>
 
             {/* Free Trial text */}
             <div className="text-center mb-10 sm:mb-12 md:mb-16 px-4">
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100">
                 Get <span className="gradient-text">One Week</span> Free Trial With A Stacker
               </p>
             </div>
@@ -383,43 +393,42 @@ export default function Discover() {
         </div>
 
         {/* Project Management Section */}
-        <section className="py-12 sm:py-16 md:py-20 px-4">
+        <section className="py-12 sm:py-16 md:py-20 px-4" style={{ backgroundColor: '#1a1a1a' }}>
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black text-center mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-100 text-center mb-10 sm:mb-12 md:mb-16">
               Project Management
             </h2>
 
             <div className="flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12 fade-in-left">
-              {/* Image on the left */}
-              <div className="flex-1 w-full">
-                <Image
-                  src="/project-management.png"
-                  alt="Project Management"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto rounded-xl"
+              {/* Lottie animation on the left */}
+              <div className="flex-1 w-full flex justify-center">
+                <dotlottie-wc
+                  src="https://lottie.host/0aeab362-de3a-48d7-80f9-4afb00004909/tmuIdnKQjU.lottie"
+                  style={{ width: '500px', height: '500px' }}
+                  autoplay
+                  loop
                 />
               </div>
 
               {/* Description on the right */}
               <div className="flex-1 w-full">
-                <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4 sm:mb-6">
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-100 mb-4 sm:mb-6">
                   You Dream, <span className="gradient-text">We Build</span>
                 </h3>
                 <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                  <li className="text-base sm:text-lg text-gray-700 flex items-center">
+                  <li className="text-base sm:text-lg text-gray-200 flex items-center">
                     <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Planning & Setup
                   </li>
-                  <li className="text-base sm:text-lg text-gray-700 flex items-center">
+                  <li className="text-base sm:text-lg text-gray-200 flex items-center">
                     <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Execution
                   </li>
-                  <li className="text-base sm:text-lg text-gray-700 flex items-center">
+                  <li className="text-base sm:text-lg text-gray-200 flex items-center">
                     <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Review & Feedback
                   </li>
-                  <li className="text-base sm:text-lg text-gray-700 flex items-center">
+                  <li className="text-base sm:text-lg text-gray-200 flex items-center">
                     <span className="mr-3 text-xl sm:text-2xl">✓</span>
                     Delivery & Closeout
                   </li>
@@ -431,7 +440,7 @@ export default function Discover() {
         </section>
 
         {/* Pixel To Production Section */}
-        <section className="py-12 sm:py-16 md:py-20 px-4 bg-black">
+        <section className="py-12 sm:py-16 md:py-20 px-4" style={{ backgroundColor: '#000000' }}>
           <style>{`
             .loader-wrapper {
               position: relative;
@@ -566,13 +575,14 @@ export default function Discover() {
               font-size: 15px;
               font-family: inherit;
               border: none;
-              background: white;
-              color: black;
+              background: #ffffff;
+              color: #000000;
               position: relative;
               overflow: hidden;
               z-index: 1;
               cursor: pointer;
-              transition: color 0.3s ease;
+              box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+              transition: color 0.5s ease;
             }
 
             .btn-pixel-to-prod::before {
@@ -590,7 +600,7 @@ export default function Discover() {
             }
 
             .btn-pixel-to-prod:hover {
-              color: white;
+              color: #e5e5e5;
             }
 
             .btn-pixel-to-prod:hover::before {
@@ -618,7 +628,7 @@ export default function Discover() {
 
               {/* Description on the left */}
               <div className="flex-1 w-full">
-                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-100 mb-3 sm:mb-4">
                   Pixel To Production
                 </h3>
                 <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-4 sm:mb-6">
@@ -643,11 +653,11 @@ export default function Discover() {
                   </li>
                 </ul>
                 <div className="mb-4 sm:mb-6">
-                  <div className="text-3xl sm:text-4xl font-bold text-white mb-2">
+                  <div className="text-3xl sm:text-4xl font-bold text-gray-100 mb-2">
                     $1,000
                   </div>
-                  <div className="text-base sm:text-lg text-gray-300">
-                    Shipped in 2 weeks
+                  <div className="text-base sm:text-lg">
+                    <span className="gradient-text">Shipped in 2 weeks</span>
                   </div>
                 </div>
                 <button className="btn-pixel-to-prod" onClick={() => openModal('Pixel To Production ($1,000)')}>Get Started</button>
@@ -660,34 +670,34 @@ export default function Discover() {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={closeModal}>
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div className="rounded-2xl max-w-md w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto" style={{ backgroundColor: '#000000', border: '1px solid #333' }} onClick={(e) => e.stopPropagation()}>
             {/* Close button */}
             <button
               onClick={closeModal}
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-600 transition w-10 h-10 flex items-center justify-center"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-200 transition w-10 h-10 flex items-center justify-center"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 pr-8">Service Inquiry</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-100 mb-4 sm:mb-6 pr-8">Service Inquiry</h2>
 
             {submitMessage ? (
               <div className="text-center py-8">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <p className="text-gray-700">{submitMessage}</p>
+                <p className="text-gray-200">{submitMessage}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
                 <div className="space-y-4">
                   {/* Name */}
                   <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-sm font-semibold text-gray-200 mb-2">
                       Name *
                     </label>
                     <input
@@ -697,14 +707,14 @@ export default function Discover() {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition text-base"
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-600 bg-gray-900 text-gray-100 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition text-base"
                       placeholder="Your name"
                     />
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-200 mb-2">
                       Work Email *
                     </label>
                     <input
@@ -714,24 +724,24 @@ export default function Discover() {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition text-base"
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-600 bg-gray-900 text-gray-100 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition text-base"
                       placeholder="your.email@company.com"
                     />
                   </div>
 
                   {/* Service (Auto-selected) */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-gray-200 mb-2">
                       Service *
                     </label>
-                    <div className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-700 text-sm sm:text-base">
+                    <div className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-600 bg-gray-900 text-gray-200 text-sm sm:text-base">
                       {selectedService}
                     </div>
                   </div>
 
                   {/* Description */}
                   <div>
-                    <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="description" className="block text-sm font-semibold text-gray-200 mb-2">
                       Description *
                     </label>
                     <textarea
@@ -741,7 +751,7 @@ export default function Discover() {
                       value={formData.description}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition resize-none text-base"
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg border border-gray-600 bg-gray-900 text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition resize-none text-base"
                       placeholder="Tell us about your requirements..."
                     />
                   </div>
@@ -750,7 +760,7 @@ export default function Discover() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-pink-600 transition disabled:opacity-50 disabled:cursor-not-allowed text-base min-h-[44px]"
+                    className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-gray-100 px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-pink-600 transition disabled:opacity-50 disabled:cursor-not-allowed text-base min-h-[44px]"
                   >
                     {isSubmitting ? 'Sending...' : 'Send'}
                   </button>

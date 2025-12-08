@@ -19,7 +19,7 @@ export default function About() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-white py-12 sm:py-16 md:py-20">
+      <section className="bg-gradient-to-br from-primary-50 to-[#f8f9fa] py-12 sm:py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex justify-center mb-6 sm:mb-8">
             <Image
@@ -81,7 +81,7 @@ export default function About() {
       <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm">
+            <div className="bg-[#f8f9fa] p-6 sm:p-8 rounded-2xl shadow-sm">
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
                 <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -95,7 +95,7 @@ export default function About() {
               </p>
             </div>
 
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm">
+            <div className="bg-[#f8f9fa] p-6 sm:p-8 rounded-2xl shadow-sm">
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
                 <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -221,7 +221,7 @@ export default function About() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Team Member 1 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+            <div className="bg-[#f8f9fa] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
               <div className="w-full h-48 sm:h-56 md:h-64 bg-gradient-to-br from-primary-200 to-primary-100 flex items-center justify-center">
                 <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-primary-600 rounded-full"></div>
               </div>
@@ -247,7 +247,7 @@ export default function About() {
             </div>
 
             {/* Team Member 2 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+            <div className="bg-[#f8f9fa] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
               <div className="w-full h-48 sm:h-56 md:h-64 bg-gradient-to-br from-primary-200 to-primary-100 flex items-center justify-center">
                 <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-primary-600 rounded-full"></div>
               </div>
@@ -273,7 +273,7 @@ export default function About() {
             </div>
 
             {/* Team Member 3 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
+            <div className="bg-[#f8f9fa] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
               <div className="w-full h-48 sm:h-56 md:h-64 bg-gradient-to-br from-primary-200 to-primary-100 flex items-center justify-center">
                 <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-primary-600 rounded-full"></div>
               </div>

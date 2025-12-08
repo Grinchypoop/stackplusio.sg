@@ -23,7 +23,7 @@ export default function Pricing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Starter Plan */}
-            <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-lg transition">
+            <div className="bg-[#f8f9fa] border-2 border-gray-200 rounded-2xl p-8 hover:shadow-lg transition">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
                 <p className="text-gray-600">Perfect for small teams getting started</p>
@@ -156,7 +156,7 @@ export default function Pricing() {
             </div>
 
             {/* Enterprise Plan */}
-            <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-lg transition">
+            <div className="bg-[#f8f9fa] border-2 border-gray-200 rounded-2xl p-8 hover:shadow-lg transition">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
                 <p className="text-gray-600">For large organizations with custom needs</p>
@@ -241,7 +241,7 @@ export default function Pricing() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-[#f8f9fa] p-6 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Is there a free trial?
               </h3>
@@ -251,7 +251,7 @@ export default function Pricing() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-[#f8f9fa] p-6 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Can I change plans later?
               </h3>
@@ -261,7 +261,7 @@ export default function Pricing() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-[#f8f9fa] p-6 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 What payment methods do you accept?
               </h3>
@@ -271,7 +271,7 @@ export default function Pricing() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-[#f8f9fa] p-6 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Do you offer annual billing?
               </h3>
@@ -281,7 +281,7 @@ export default function Pricing() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-[#f8f9fa] p-6 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 What happens to my data if I cancel?
               </h3>
@@ -291,7 +291,7 @@ export default function Pricing() {
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-sm">
+            <div className="bg-[#f8f9fa] p-6 rounded-xl shadow-sm">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Is my data secure?
               </h3>

@@ -21,6 +21,22 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
+    title: 'Novo',
+    description: "The world's first human-like marking assistant built to work the way you do. Novo brings true inline marking for every subject, delivering feedback instantly, intelligently, and seamlessly.",
+    image: '',
+    keyPoints: [
+      'True inline marking for every subject',
+      'Instant and intelligent feedback',
+      'Human-like marking experience',
+      'Seamless integration into workflow'
+    ],
+    technologies: ['AI/ML', 'Education Tech', 'Web App'],
+    direction: 'left',
+    website: 'https://msnovo.com',
+    linkedin: 'https://www.linkedin.com/company/noverse-inc/'
+  },
+  {
+    id: 2,
     title: 'Lint Voice',
     description: 'A modular AI voice framework with streaming speech-to-text, intelligent AI responses, and text-to-speech capabilities. Designed to run locally and optimized for Apple Silicon. A foundation for the community to explore, innovate, and build AI voice applications.',
     image: '/lint-voice.jpeg',
@@ -32,25 +48,10 @@ const projects: Project[] = [
       'Modular architecture for easy integration'
     ],
     technologies: ['Python', 'AI/ML', 'Apple Silicon'],
-    direction: 'left',
-    website: 'https://lnkd.in/gWut5uhw',
-    github: 'https://lnkd.in/ggqEyjYX'
-  },
-  {
-    id: 2,
-    title: 'Novo',
-    description: "The world's first human-like marking assistant built to work the way you do. Novo brings true inline marking for every subject, delivering feedback instantly, intelligently, and seamlessly.",
-    image: '',
-    keyPoints: [
-      'True inline marking for every subject',
-      'Instant and intelligent feedback',
-      'Human-like marking experience',
-      'Seamless integration into workflow'
-    ],
-    technologies: ['AI/ML', 'Education Tech', 'Web App'],
     direction: 'right',
-    website: 'https://msnovo.com',
-    linkedin: 'https://www.linkedin.com/company/noverse-inc/'
+    website: 'https://voice.lintware.com/',
+    github: 'https://lnkd.in/ggqEyjYX',
+    linkedin: 'https://www.linkedin.com/company/lintware/'
   },
 ]
 
