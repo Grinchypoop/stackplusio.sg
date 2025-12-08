@@ -491,6 +491,7 @@ export default function OurCause() {
                   )}
 
                   {initiative.type === 'lottie' && (
+                    // @ts-ignore
                     <dotlottie-wc
                       src="https://lottie.host/221a27bf-7421-460a-8fa2-f2b4de841fa0/sZ1vUramZa.lottie"
                       style={{ width: '300px', height: '300px' }}

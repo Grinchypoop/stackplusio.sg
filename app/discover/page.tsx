@@ -402,6 +402,7 @@ export default function Discover() {
             <div className="flex flex-col md:flex-row items-center gap-8 sm:gap-10 md:gap-12 fade-in-left">
               {/* Lottie animation on the left */}
               <div className="flex-1 w-full flex justify-center">
+                {/* @ts-ignore */}
                 <dotlottie-wc
                   src="https://lottie.host/0aeab362-de3a-48d7-80f9-4afb00004909/tmuIdnKQjU.lottie"
                   style={{ width: '500px', height: '500px' }}
