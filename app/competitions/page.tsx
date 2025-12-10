@@ -237,7 +237,7 @@ export default function Competitions() {
             <ul className="text-gray-800 mb-6 space-y-2 text-sm sm:text-base">
               <li className="flex items-start gap-2">
                 <span className="text-orange-500 mt-1 flex-shrink-0">•</span>
-                <span><span className="highlight-text highlight-delay-3">$5,000 worth of Stack+ development credits</span> which can be used for MVP build support from the Stack+ team.</span>
+                <span>Winning team receives a <span className="highlight-text highlight-delay-3">4-week free MVP build package</span> worth $5,000 from Stack+</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-orange-500 mt-1 flex-shrink-0">•</span>

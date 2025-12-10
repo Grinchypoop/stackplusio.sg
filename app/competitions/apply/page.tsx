@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Footer from '@/components/Footer'
 
 export default function CompetitionApply() {
   const [formData, setFormData] = useState({
@@ -18,16 +17,41 @@ export default function CompetitionApply() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCRWrJIW_VB2Nl0F1ooKvuwojNHko2545IWakWN1MYZP8oSFwQ88ASusR2sB87GqhG/exec'
+
+  // Deadline: 31st December 2025, 11:59 PM Singapore Time (UTC+8)
+  const DEADLINE = new Date('2025-12-31T23:59:00+08:00').getTime()
 
   useEffect(() => {
     // Hide default header on this page
     const header = document.querySelector('header')
     if (header) header.style.display = 'none'
 
+    // Countdown timer
+    const updateCountdown = () => {
+      const now = new Date().getTime()
+      const difference = DEADLINE - now
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+        })
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+      }
+    }
+
+    updateCountdown()
+    const timer = setInterval(updateCountdown, 1000)
+
     return () => {
       if (header) header.style.display = ''
+      clearInterval(timer)
     }
   }, [])
 
@@ -123,7 +147,34 @@ export default function CompetitionApply() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif italic text-white mb-4">
             Apply Now
           </h1>
-          <p className="text-gray-400 mb-8">Stacker Compete Application</p>
+          <p className="text-gray-400 mb-6">Stacker Compete Application</p>
+
+          {/* Countdown Timer */}
+          <div className="mb-8">
+            <p className="text-gray-500 text-sm mb-3 text-center">Application closes in</p>
+            <div className="flex justify-center items-center gap-2 sm:gap-4">
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">{timeLeft.days}</div>
+                <div className="text-sm text-gray-400 mt-1">Days</div>
+              </div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">:</div>
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">{timeLeft.hours.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-400 mt-1">Hours</div>
+              </div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">:</div>
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">{timeLeft.minutes.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-400 mt-1">Minutes</div>
+              </div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">:</div>
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">{timeLeft.seconds.toString().padStart(2, '0')}</div>
+                <div className="text-sm text-gray-400 mt-1">Seconds</div>
+              </div>
+            </div>
+            <p className="text-gray-600 text-xs mt-4 text-center">Deadline: 31st December 2025, 11:59 PM (SGT)</p>
+          </div>
 
           {submitted ? (
             <div className="bg-green-900/30 border border-green-500/50 rounded-2xl p-8 text-center">
@@ -339,8 +390,6 @@ export default function CompetitionApply() {
           )}
         </div>
       </div>
-
-      <Footer />
     </div>
   )
 }
