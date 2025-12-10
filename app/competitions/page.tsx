@@ -229,7 +229,7 @@ export default function Competitions() {
             </p>
 
             <p className="text-gray-800 mb-6 text-sm sm:text-base">
-              All you need is a <span className="highlight-text highlight-delay-1">60-second video pitching your idea</span> plus a twist that shows your creativity under pressure. We're looking for <span className="highlight-text highlight-delay-2">sharp thinking, clear vision, and the ability to execute quickly</span>.
+              All you need is a <span className="highlight-text highlight-delay-1">60-second video pitching your idea</span>. Make your pitch as creative as possible. We're looking for <span className="highlight-text highlight-delay-2">sharp thinking, clear vision, and the ability to execute quickly</span>.
             </p>
 
             <h3 className="text-lg sm:text-xl font-semibold mb-4 text-center" style={{ background: 'linear-gradient(-45deg, #f89b29, #ff0f7b)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Prize</h3>

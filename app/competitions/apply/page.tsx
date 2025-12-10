@@ -201,14 +201,21 @@ export default function CompetitionApply() {
                   </svg>
                   Instructions
                 </h2>
-                <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                  Film your pitch under 60 seconds and post it on LinkedIn. Any creative caption is fine, just remember to tag{' '}
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-3">
+                  Have an idea? Film a 60 second video introducing your startup. Make it as creative as possible.
+                </p>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-3">
+                  Post it on LinkedIn and tag{' '}
                   <a href="https://www.linkedin.com/company/lythegigs/" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 underline">@Lythe</a>
                   {' '}and{' '}
-                  <a href="https://www.linkedin.com/company/stackio/" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 underline">@Stack+</a>.
+                  <a href="https://www.linkedin.com/company/stackio/" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:text-orange-300 underline">@Stack+</a>
+                  {' '}then fill up this application form!
                 </p>
-                <p className="text-orange-400 text-sm mt-3 font-medium">
-                  Make sure to tag the correct pages or your application will not be considered.
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-3">
+                  All the best!
+                </p>
+                <p className="text-orange-400 text-sm font-medium">
+                  Make sure to tag the correct pages or your application would be disqualified.
                 </p>
               </div>
 
