@@ -114,6 +114,21 @@ const projects: Project[] = [
     direction: 'left',
     website: 'https://ourmates.vercel.app'
   },
+  {
+    id: 7,
+    title: 'Sungwa',
+    description: 'An interactive English learning app built for Tibetan speakers. Sungwa helps users master English through vocabulary, grammar, AI roleplay conversations, and spaced repetition — all in a beautifully simple experience.',
+    image: '/sungwa-screenshot.jpeg',
+    keyPoints: [
+      'Tibetan to English language learning',
+      'AI roleplay for real-world conversations',
+      'Spaced repetition for long-term retention',
+      'Interactive lessons with progress tracking'
+    ],
+    technologies: ['Ed Tech', 'AI/ML', 'Web App', 'Language Learning'],
+    direction: 'right',
+    website: 'https://sangwa-webapp.vercel.app'
+  },
 ]
 
 export default function Projects() {
