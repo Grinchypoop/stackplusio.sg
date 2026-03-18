@@ -637,14 +637,11 @@ export default function Discover() {
                   </li>
                 </ul>
                 <div className="mb-4 sm:mb-6">
-                  <div className="text-3xl sm:text-4xl font-bold text-gray-100 mb-2">
-                    $1,000
-                  </div>
                   <div className="text-base sm:text-lg">
                     <span className="gradient-text">Shipped in 2 weeks</span>
                   </div>
                 </div>
-                <button className="btn-pixel-to-prod" onClick={() => openModal('Pixel To Production ($1,000)')}>Get Started</button>
+                <a href="https://pixel.stackplus.sg" target="_blank" rel="noopener noreferrer" className="btn-pixel-to-prod">Get Started</a>
               </div>
             </div>
           </div>
