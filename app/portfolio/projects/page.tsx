@@ -11,6 +11,7 @@ interface Project {
   title: string
   description: string
   image: string
+  video?: string
   keyPoints: string[]
   technologies: string[]
   direction: 'left' | 'right'
@@ -53,6 +54,51 @@ const projects: Project[] = [
     website: 'https://voice.lintware.com/',
     github: 'https://lnkd.in/ggqEyjYX',
     linkedin: 'https://www.linkedin.com/company/lintware/'
+  },
+  {
+    id: 3,
+    title: 'Mealistik',
+    description: 'A smart meal prep app designed to simplify healthy eating. Mealistik helps users plan, prep, and track their meals effortlessly — turning nutrition goals into daily habits.',
+    image: '',
+    keyPoints: [
+      'Personalised meal planning',
+      'Smart ingredient & grocery tracking',
+      'Nutrition-focused meal prep guides',
+      'Simple and intuitive user experience'
+    ],
+    technologies: ['Mobile App', 'Health Tech', 'Nutrition'],
+    direction: 'left',
+    website: 'https://www.mealistik.com'
+  },
+  {
+    id: 4,
+    title: 'Optera',
+    description: 'Optera bridges the gap between students and real-world opportunities by connecting them directly to internships that match their skills and aspirations.',
+    image: '',
+    video: '/optera-video.mp4',
+    keyPoints: [
+      'Student-to-internship matching platform',
+      'Skill-based opportunity discovery',
+      'Streamlined application process',
+      'Connects universities with industry partners'
+    ],
+    technologies: ['Web App', 'Ed Tech', 'Career Platform'],
+    direction: 'right'
+  },
+  {
+    id: 5,
+    title: 'Ourmates',
+    description: 'A compassionate care management system built for dementia patients and their caregivers. Ourmates helps families and care teams coordinate, track, and personalise daily care with ease.',
+    image: '',
+    keyPoints: [
+      'Dementia-focused care coordination',
+      'Daily activity & medication tracking',
+      'Family and caregiver collaboration tools',
+      'Patient-centred care management'
+    ],
+    technologies: ['Health Tech', 'Web App', 'Care Management'],
+    direction: 'left',
+    website: 'https://ourmates.vercel.app'
   },
 ]
 
@@ -461,7 +507,7 @@ export default function Projects() {
                           sizes="(max-width: 768px) 100vw, 50vw"
                         />
                       </div>
-                    ) : project.title === 'Novo' ? (
+                    ) : project.video || project.title === 'Novo' ? (
                       <div className="aspect-video relative rounded-2xl overflow-hidden shadow-2xl shadow-purple-500/20 border border-purple-900/30">
                         <video
                           autoPlay
@@ -470,7 +516,7 @@ export default function Projects() {
                           playsInline
                           className="w-full h-full object-cover"
                         >
-                          <source src="/novo-video.mp4" type="video/mp4" />
+                          <source src={project.video ?? '/novo-video.mp4'} type="video/mp4" />
                         </video>
                       </div>
                     ) : (
