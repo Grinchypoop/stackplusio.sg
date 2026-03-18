@@ -87,6 +87,20 @@ const projects: Project[] = [
   },
   {
     id: 5,
+    title: 'Xavier',
+    description: 'A powerful class management system built for educators and learning centres. Xavier streamlines admin-related tasks and delivers targeted practice to students — so teachers can focus on teaching, not paperwork.',
+    image: '/xavier-screenshot.jpeg',
+    keyPoints: [
+      'Automated admin & class management',
+      'AI-powered targeted practice for students',
+      'Progress tracking & student analytics',
+      'Class scheduling & question library'
+    ],
+    technologies: ['Ed Tech', 'AI/ML', 'Web App', 'LMS'],
+    direction: 'right'
+  },
+  {
+    id: 6,
     title: 'Ourmates',
     description: 'A compassionate care management system built for dementia patients and their caregivers. Ourmates helps families and care teams coordinate, track, and personalise daily care with ease.',
     image: '',
