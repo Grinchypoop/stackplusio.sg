@@ -641,7 +641,7 @@ export default function Discover() {
                     <span className="gradient-text">Shipped in 2 weeks</span>
                   </div>
                 </div>
-                <a href="https://pixel.stackplus.sg" target="_blank" rel="noopener noreferrer" className="btn-pixel-to-prod">Get Started</a>
+                <button className="btn-learn-more" onClick={() => window.open('https://pixel.stackplus.sg', '_blank')}>Get Started</button>
               </div>
             </div>
           </div>
