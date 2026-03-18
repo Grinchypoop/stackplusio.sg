@@ -103,7 +103,7 @@ const projects: Project[] = [
     id: 6,
     title: 'Ourmates',
     description: 'A compassionate care management system built for dementia patients and their caregivers. Ourmates helps families and care teams coordinate, track, and personalise daily care with ease.',
-    image: '',
+    image: '/ourmates-logo.jpg',
     keyPoints: [
       'Dementia-focused care coordination',
       'Daily activity & medication tracking',
